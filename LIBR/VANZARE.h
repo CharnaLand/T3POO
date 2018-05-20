@@ -54,32 +54,32 @@ public:
             {
             case 1:
                 {
-                    elm=dynamic_cast<MINI>(elm);
+                    elm=dynamic_cast<MINI*>(elm);
                     elm=new MINI;
                     break;
                 }
             case 2:
                 {
-                    elm=dynamic_cast<MICA>(elm);
+                    elm=dynamic_cast<MICA*>(elm);
                     elm=new MICA;
                     break;
                 }
             case 3:
                 {
-                    elm=dynamic_cast<HATCHBACK>(elm);
+                    elm=dynamic_cast<HATCHBACK*>(elm);
                     elm=new HATCHBACK;
                     break;
                 }
             case 4:
                 {
-                    elm=dynamic_cast<COMBI>(elm);
+                    elm=dynamic_cast<COMBI*>(elm);
                     elm=new COMBI;
                     break;
                 }
             case 5:
                 {
-                    elm=dynamic_cast<COMBI>(elm);
-                    elm=new COMBI;
+                    elm=dynamic_cast<SEDAN*>(elm);
+                    elm=new SEDAN;
                     break;
                 }
             default:
@@ -88,7 +88,7 @@ public:
                 break;
                 }
             }
-            cout<<"\tSe citeste Masina de tipul "<<elm.tip()<<" :\n";
+            cout<<"\tSe citeste Masina de tipul "<<elm->tip()<<" :\n";
             cin>>(*elm);
             try
             {
@@ -96,10 +96,11 @@ public:
             }
             catch(int x)
             {
-                cout<<"ELEMENT INTRODUS INVALID\n";
+                cout<<"\nELEMENT INTRODUS INVALID\n\n";
+                delete elm;
                 continue;
             }
-            elm=dynamic_cast<T*> elm;
+            elm=dynamic_cast<T*> (elm);
             stock.push_back(elm);
             nr_stock++;
         }
@@ -194,7 +195,7 @@ public:
         {   MONOVOLUME* elm;
             cout<<">Ce fel de MONOVOLUM "<<i+1<<"?";
             cout<<"\n\t1.NOU";
-            cout<<"\n\t2.SECOND HAND";
+            cout<<"\n\t2.SECOND HAND\n";
             cout<<"Alegeti: ";
             cin>>op;
             getline(cin,sters);
@@ -202,13 +203,13 @@ public:
             {
             case 1:
                 {
-                    elm=dynamic_cast<MONOV_NOU>(elm);
+                    elm=dynamic_cast<MONOV_NOU*>(elm);
                     elm=new MONOV_NOU;
                     break;
                 }
             case 2:
                 {
-                    elm=dynamic_cast<MONOV_SH>(elm);
+                    elm=dynamic_cast<MONOV_SH*>(elm);
                     elm=new MONOV_SH;
                     break;
                 }
@@ -219,7 +220,7 @@ public:
                 continue;
                 }
             }
-            cout<<"\tSe citeste Masina de tipul "<<elm.tip()<<" :\n";
+            cout<<"\tSe citeste Masina de tipul "<<elm->tip()<<" :\n";
             cin>>(*elm);
             try
             {
@@ -227,14 +228,38 @@ public:
             }
             catch(int x)
             {
-                cout<<"ELEMENT INTRODUS INVALID\n";
+                cout<<"\nELEMENT INTRODUS INVALID\n\n";
+                delete elm;
                 continue;
             }
-            elm=dynamic_cast<T*> elm;
+            elm=dynamic_cast<MONOVOLUME*> (elm);
             stock.push_back(elm);
             nr_stock++;
         }
         ///s-au citit nu stiu cate elemente
+    }
+
+    void afis_stock()
+    {cout<<"\n";
+        if(nr_stock==0) cout<<"Nu exista masini in stoc.\n";
+        else
+        {
+        cout<<"Masini EXISTENTE IN STOC:\n";
+        for(int i=0;i<nr_stock;i++)
+            cout<<*(stock[i]);
+        }
+    }
+
+    void afis_vandute()
+    {cout<<"\n";
+        if(nr_vandute==0) cout<<"Nu s-au vandut inca masini.\n";
+        else
+        {
+        cout<<"\tMasini VANDUTE :\n";
+        for(int i=0;i<nr_vandute;i++)
+            cout<<*(vandute[i]);
+        }
+
     }
 
 };

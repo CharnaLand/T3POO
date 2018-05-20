@@ -249,3 +249,15 @@ ostream& operator<< (ostream& out, MONOV_SH& mv_sh)
     mv_sh.afisare(out);
     return out;
 }
+
+istream& operator>> (istream&in, MONOVOLUME& mv)
+{
+    mv.citire(in);
+    return in;
+}
+ostream& operator<< (ostream&out, MONOVOLUME& mv)
+{
+    mv.afisare(out);
+    return out;
+}
+

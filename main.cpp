@@ -33,19 +33,19 @@ while(op)
     case 3:
         {
             V.afis_stock();
-            cout<<"ALEGETI UN NUMAR DE LA 1 LA "<<V.cate_stock<<": ";
+            cout<<"ALEGETI UN NUMAR DE LA 1 LA "<<V.cate_stock()<<": ";
             int ii;
             cin>>ii;
-            V.vinde(i);
+            V.vinde(ii);
             break;
         }
     case 4:
         {
             M.afis_stock();
-            cout<<"ALEGETI UN NUMAR DE LA 1 LA "<<M.cate_stock<<": ";
+            cout<<"ALEGETI UN NUMAR DE LA 1 LA "<<M.cate_stock()<<": ";
             int ii;
             cin>>ii;
-            M.vinde(i);
+            M.vinde(ii);
             break;
         }
     case 5:
@@ -70,8 +70,14 @@ while(op)
         }
     case 0:
         {
+            cout<<"O ZI BUNA!\n";
             break;
         }
+    default:
+    {
+        cout<<"OPTIUNE INVALIDA\n";
+        break;
+    }
     }
 
 }

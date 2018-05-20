@@ -2,6 +2,3 @@
 
 #include "VANZARE.h"
 
-void MENIU()
-{
-}
