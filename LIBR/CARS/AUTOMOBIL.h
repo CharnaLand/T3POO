@@ -3,27 +3,53 @@
 class AUTOMOBIL
 {
 protected:
+    string Marca;
+    int an_fabr;
+    float litraj;
     float lungime;
     float pret;
-    float litraj;
-    int an_fabr;
-    string Marca;
 public:
     AUTOMOBIL(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,float price=-1.0):Marca(M),an_fabr(an_f),litraj(litr),lungime(lung),pret(price){}
     AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.litraj,A.lungime,A.pret){}
     ~AUTOMOBIL();
-    virtual void afiss (ostream& out);
+    AUTOMOBIL& operator=(AUTOMOBIL& A);
+    virtual void citire (istream& in);
+    virtual void afisare (ostream& out);
     ///string cc(string& desc);
+    friend string UPPER (string str);
     friend istream& operator>> (istream&in, AUTOMOBIL& a);
     friend ostream& operator<< (ostream&out, AUTOMOBIL& a);
 };
 
-void AUTOMOBIL::afiss (ostream& out)
+AUTOMOBIL& AUTOMOBIL::operator=(AUTOMOBIL& A)
+{
+    Marca=A.Marca;
+    an_fabr=A.an_fabr;
+    litraj=A.litraj;
+    lungime=A.lungime;
+    pret=A.pret;
+    return *this;
+}
+
+
+void AUTOMOBIL::citire (istream& in)
+{
+    cout<<"\nIntroduceti datele AUTOMOBILULUI:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+
+void AUTOMOBIL::afisare (ostream& out)
 {
     if(Marca!= " ")
         {
         out<<"Marca : "<<Marca<<" | Anul: "<<an_fabr<<" | Lungime: "<<lungime<<"m | Litraj:  "<<litraj<<" L";
-        out<<"\n| Litraj: "<<litraj<<" L | PRET: "<<pret<<" EURO\n\n";
+        out<<"\n| PRET: "<<pret<<" EURO\n\n";
         }
 
 }
@@ -33,17 +59,24 @@ AUTOMOBIL::~AUTOMOBIL()
     Marca.clear();
 }
 
-/**
+
 istream& operator>> (istream&in, AUTOMOBIL& a)
 {
-
-}*/
+    a.citire(in);
+    return in;
+}
 ostream& operator<< (ostream&out, AUTOMOBIL& a)
 {
-    a.afiss(out);
+    a.afisare(out);
     return out;
 }
 
+string UPPER (string str)
+{
+    for(int i=0;i<str.size();i++)
+        str[i]=toupper(str[i]);
+    return str;
+}
 
 /*
 istream& operator>> (istream&in, AUTOMOBIL& a)

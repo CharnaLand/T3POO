@@ -65,3 +65,6 @@ try
     pret
         pozitiv
         nu prea mic
+    discounturi
+        nenegative
+        mai mici de 100

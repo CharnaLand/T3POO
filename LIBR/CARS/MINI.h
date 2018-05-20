@@ -9,11 +9,40 @@ public:
     {}
     MINI(MINI& M):AUTOMOBIL(M),tractiune_fata(M.tractiune_fata){}
     ~MINI(){}
-    void afiss(ostream& out);
+    MINI& operator= (MINI& mi);
+    void citire(istream& in);
+    void afisare(ostream& out);
+    ///FRIEND
+    friend istream& operator>> (istream&in, MINI& a);
+    friend ostream& operator<< (ostream&out, MINI& a);
 };
 
+MINI& MINI::operator= (MINI& mi)
+{
+    AUTOMOBIL::operator=(mi);
+    tractiune_fata=mi.tractiune_fata;
+    return *this;
+}
 
-void MINI::afiss (ostream& out)
+void MINI::citire (istream& in)
+{
+    cout<<"\nSe citesc date pentru Masina MINI:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+    cout<<"Tractiune: 1.FATA sau 2.SPATE?\n";
+    string trac;
+    in>>trac;
+    trac=UPPER(trac);
+    if(trac=="1" || trac=="FATA") tractiune_fata=1;
+    else if(trac=="2" || trac=="SPATE") tractiune_fata=0;
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+
+void MINI::afisare (ostream& out)
 {
     if(Marca!= " ")
         {
@@ -24,3 +53,15 @@ void MINI::afiss (ostream& out)
         out<<" | PRET: "<<pret<<" EURO\n\n";
         }
 }
+
+istream& operator>> (istream&in, MINI& m)
+{
+    m.citire(in);
+    return in;
+}
+ostream& operator<< (ostream&out, MINI& m)
+{
+    m.afisare(out);
+    return out;
+}
+

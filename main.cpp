@@ -3,17 +3,9 @@
 
 int main()
 {
-MINI mm("Bemveu mistoK",1999,90,5.5,1,2500);
-cout<<mm;
-MICA mi("Sendvis maker",2010,44,4.0,1,2130);
-cout<<mi;
-COMPACTA cop("Politai",2003,120,4.88,1,1600);
-cout<<cop;
-SEDAN meen("Dacia 1910",1910,120,5.2,1,800);
-cout<<meen;
-HATCHBACK hb("Ford laFesta",2001,60,5.3,1,1,2103);
-cout<<hb;
-COMBI col("ColIbric",2011,155,6,1,1,3500);
-cout<<col;
+HATCHBACK hb("ceva acolo",2010,65,5,1,1,2500),hbb(hb);
+MONOV_NOU mvn("Mono Poly",2000,66.5,5.4,0,12.5,2500), mvvv(mvn);
+MONOV_SH mvs("Adidash",2006,85,5.5,3,2000), mvss(mvs);
+cout<<mvvv<<mvss;
 return 0;
 }
