@@ -2,21 +2,52 @@
 
 class AUTOMOBIL
 {
+protected:
     float lungime;
-    int litraj;
+    float pret;
+    float consum_benzina;
+    int viteza_maxima;
+    int cai_putere;
     int an_fabr;
-    vector<string> caract;
     string Marca;
 public:
-    AUTOMOBIL(string M=" ",int an_f=0,float lung=0,int litr=0,float price=-1.0):Marca(M),an_fabr(an_f),lungime(lung),litraj(litr){}
-    AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.lungime,A.litraj){}
+    AUTOMOBIL(string M=" ",int an_f=0,int vit_max=0,int cai_put=0,float cons_suta=0.0,float lung=0.0,float price=-1.0):Marca(M),an_fabr(an_f),viteza_maxima(vit_max),cai_putere(cai_put),consum_benzina(cons_suta),lungime(lung),pret(price){}
+    AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.viteza_maxima,A.cai_putere,A.consum_benzina,A.lungime,A.pret){}
     ~AUTOMOBIL();
-    void afiss ();
-    string cc(string& desc);
+    virtual void afiss (ostream& out);
+    ///string cc(string& desc);
     friend istream& operator>> (istream&in, AUTOMOBIL& a);
     friend ostream& operator<< (ostream&out, AUTOMOBIL& a);
 };
 
+void AUTOMOBIL::afiss (ostream& out)
+{
+    if(Marca!= " ")
+        {
+        out<<"Marca : "<<Marca<<" | Anul: "<<an_fabr<<" | Lungime: "<<lungime<<"m | Cai putere : "<<cai_putere<<" CP";;
+        out<<"\n\r | Consum benzina : "<<consum_benzina<<" L/100km | Viteza maxima : "<<viteza_maxima<<" km/h | PRET: "<<pret<<" EURO\n\n";
+        }
+
+}
+
+AUTOMOBIL::~AUTOMOBIL()
+{
+    Marca.clear();
+}
+
+/**
+istream& operator>> (istream&in, AUTOMOBIL& a)
+{
+
+}*/
+ostream& operator<< (ostream&out, AUTOMOBIL& a)
+{
+    a.afiss(out);
+    return out;
+}
+
+
+/*
 istream& operator>> (istream&in, AUTOMOBIL& a)
     {
         in>>a.Marca>>a.an_fabr>>a.lungime>>a.litraj;
@@ -38,17 +69,4 @@ string AUTOMOBIL::cc(string& desc)
     if(desc=="57_LOCURI") return "5-7 locuri";
     return desc;
 }
-
-void AUTOMOBIL::afiss ()
-{
-    if(Marca!= " ")
-        cout<<"Marca : "<<Marca<<" | Anul: "<<an_fabr<<" | Lungime: "<<lungime<<" | Litraj: "<<litraj<<"L\n";
-    else cout<<"Date nestocate\n";
-}
-
-AUTOMOBIL::~AUTOMOBIL()
-{
-    Marca.clear();
-    litraj=lungime=an_fabr=0;
-}
-
+*/
