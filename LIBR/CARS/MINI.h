@@ -14,6 +14,13 @@ public:
     void citire(istream& in);
     void citire(ifstream& in);
     void afisare(ostream& out);
+    int check()
+    {
+        if(an_fabr>2018) return 1;
+        if(pret<0) return 2;
+        if(Marca==" ") return 3;
+        if(lungime>4) return 4;
+    }
     ///FRIEND
     friend ifstream& operator>> (ifstream&in, MINI& a);
     friend istream& operator>> (istream&in, MINI& a);

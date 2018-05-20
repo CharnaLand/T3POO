@@ -13,6 +13,13 @@ public:
     virtual void citire(ifstream& in);
     virtual void citire(istream& in);
     virtual void afisare(ostream& out);
+    int check()
+    {
+        if(an_fabr>2018) return 1;
+        if(pret<0) return 2;
+        if(Marca==" ") return 3;
+        if(lungime<4.2 || lungime>4.5) return 4;
+    }
     friend ifstream& operator>> (ifstream& in, COMPACTA& cp);
     friend istream& operator>> (istream& in, COMPACTA& cp);
     friend ostream& operator<< (ostream& out, COMPACTA& cp);

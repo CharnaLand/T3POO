@@ -26,6 +26,14 @@ public:
     {}
     MONOV_NOU(MONOV_NOU& mvn):MONOVOLUME(mvn),discount_inteprinderi(mvn.discount_inteprinderi){}
     ~MONOV_NOU(){}
+    int check()
+    {
+        if(an_fabr>2018) return 1;
+        if(pret<0) return 2;
+        if(Marca==" ") return 3;
+        if(lungime>4) return 4;
+        if(discount_inteprinderi<0 || discount_inteprinderi>=100) return 5;
+    }
     string tip () {return "MONOVOLUM NOU";}
     MONOV_NOU& operator= (MONOV_NOU& mvn);
     ///FRIEND
@@ -47,6 +55,14 @@ public:
     }
     MONOV_SH(MONOV_SH& mvsh):MONOVOLUME(mvsh),discout_vechime(mvsh.discout_vechime){}
     ~MONOV_SH(){}
+    int check()
+    {
+        if(an_fabr>2018) return 1;
+        if(pret<0) return 2;
+        if(Marca==" ") return 3;
+        if(lungime>4) return 4;
+        if(discout_vechime<0 || discout_vechime>=100) return 5;
+    }
     string tip () {return "MONOVOLUM SECOND-HAND";}
     MONOV_SH& operator= (MONOV_SH& mvsh);
     void citire(ifstream& in);

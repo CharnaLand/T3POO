@@ -18,6 +18,12 @@ public:
     virtual string tip () {return "AUTOMOBIL";}
     virtual void citire (istream& in);
     virtual void afisare (ostream& out);
+    virtual int check()
+    {
+        if(an_fabr>2018) return 1;
+        if(pret<0) return 2;
+        if(Marca==" ") return 3;
+    }
     ///string cc(string& desc);
     friend string UPPER (string str);
     friend ifstream& operator>> (ifstream&in, AUTOMOBIL& a);
