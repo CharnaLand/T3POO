@@ -12,8 +12,10 @@ public:
     MINI& operator= (MINI& mi);
     string tip () {return "MINI";}
     void citire(istream& in);
+    void citire(ifstream& in);
     void afisare(ostream& out);
     ///FRIEND
+    friend ifstream& operator>> (ifstream&in, MINI& a);
     friend istream& operator>> (istream&in, MINI& a);
     friend ostream& operator<< (ostream&out, MINI& a);
 };
@@ -43,6 +45,25 @@ string n;
 getline(in,n);
 }
 
+void MINI::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina MINI:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+    cout<<"Tractiune: 1.FATA sau 2.SPATE?\n";
+    string trac;
+    in>>trac;
+    trac=UPPER(trac);
+    if(trac=="1" || trac=="FATA") tractiune_fata=1;
+    else if(trac=="2" || trac=="SPATE") tractiune_fata=0;
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+
+
 void MINI::afisare (ostream& out)
 {
     if(Marca!= " ")
@@ -60,6 +81,13 @@ istream& operator>> (istream&in, MINI& m)
     m.citire(in);
     return in;
 }
+
+ifstream& operator>> (ifstream&in, MINI& m)
+{
+    m.citire(in);
+    return in;
+}
+
 ostream& operator<< (ostream&out, MINI& m)
 {
     m.afisare(out);

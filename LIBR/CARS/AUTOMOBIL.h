@@ -20,6 +20,7 @@ public:
     virtual void afisare (ostream& out);
     ///string cc(string& desc);
     friend string UPPER (string str);
+    friend ifstream& operator>> (ifstream&in, AUTOMOBIL& a);
     friend istream& operator>> (istream&in, AUTOMOBIL& a);
     friend ostream& operator<< (ostream&out, AUTOMOBIL& a);
 };
@@ -68,6 +69,13 @@ istream& operator>> (istream&in, AUTOMOBIL& a)
     a.citire(in);
     return in;
 }
+
+ifstream& operator>> (ifstream&in, AUTOMOBIL& a)
+{
+    a.citire(in);
+    return in;
+}
+
 ostream& operator<< (ostream&out, AUTOMOBIL& a)
 {
     a.afisare(out);

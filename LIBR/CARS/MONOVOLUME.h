@@ -29,8 +29,10 @@ public:
     string tip () {return "MONOVOLUM NOU";}
     MONOV_NOU& operator= (MONOV_NOU& mvn);
     ///FRIEND
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
+    friend ifstream& operator>> (ifstream&in, MONOV_NOU& mv_n);
     friend istream& operator>> (istream&in, MONOV_NOU& mv_n);
     friend ostream& operator<< (ostream&out, MONOV_NOU& mv_n);
 };
@@ -47,9 +49,11 @@ public:
     ~MONOV_SH(){}
     string tip () {return "MONOVOLUM SECOND-HAND";}
     MONOV_SH& operator= (MONOV_SH& mvsh);
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
     ///FRIEND
+    friend ifstream& operator>> (ifstream&in, MONOV_SH& mv_sh);
     friend istream& operator>> (istream&in, MONOV_SH& mv_sh);
     friend ostream& operator<< (ostream&out, MONOV_SH& mv_sh);
 };
@@ -123,6 +127,52 @@ void MONOV_SH::citire (istream& in)
     getline(in,n);
 }
 
+
+void MONOV_NOU::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina MONOVOLUM NOU:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Tipuri USI: 1.OBISNUITE | 2.SIMETRICE | 3.CULISANTA\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="OBISNUITE") deschidere_usi=1;
+    else if(sir=="2" || sir=="SIMETRICE") deschidere_usi=2;
+    else if(sir=="3" || sir=="CULISANTA") deschidere_usi=3;
+
+    cout<<"Discout inteprinteri: ";
+    in>>discount_inteprinderi;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+    string n;
+    getline(in,n);
+}
+void MONOV_SH::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina MONOVOLUM SECOND-HAND:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Tipuri PORTIERE: 1.OBISNUITE | 2.SIMETRICE | 3.CULISANTA\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="OBISNUITE") deschidere_usi=1;
+    else if(sir=="2" || sir=="SIMETRICE") deschidere_usi=2;
+    else if(sir=="3" || sir=="CULISANTA") deschidere_usi=3;
+
+    discout_vechime=2018-an_fabr;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+    string n;
+    getline(in,n);
+}
 void MONOV_NOU::afisare (ostream& out)
 {
     if(Marca!= " ")
@@ -152,6 +202,11 @@ void MONOV_SH::afisare (ostream& out)
 }
 
 
+ifstream& operator>> (ifstream& in, MONOV_NOU& mv_n)
+{
+    mv_n.citire(in);
+    return in;
+}
 istream& operator>> (istream& in, MONOV_NOU& mv_n)
 {
     mv_n.citire(in);
@@ -163,6 +218,11 @@ ostream& operator<< (ostream& out, MONOV_NOU& mv_n)
     return out;
 }
 
+ifstream& operator>> (ifstream& in, MONOV_SH& mv_sh)
+{
+    mv_sh.citire(in);
+    return in;
+}
 istream& operator>> (istream& in, MONOV_SH& mv_sh)
 {
     mv_sh.citire(in);

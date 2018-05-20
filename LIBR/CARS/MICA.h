@@ -14,9 +14,11 @@ public:
     }
     string tip () {return "MICA";}
     MICA& operator= (MICA& mc);
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
     ///FRIEND
+    friend ifstream& operator>> (ifstream&in, MICA& a);
     friend istream& operator>> (istream&in, MICA& a);
     friend ostream& operator<< (ostream&out, MICA& a);
 };
@@ -27,6 +29,24 @@ MICA& MICA::operator= (MICA& mc)
     cutie_manuala=mc.cutie_manuala;
 }
 
+
+void MICA::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina MICA:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+    cout<<"Cutie de viteza: 1.MANUALA | 2. AUTOMATA\n";
+    string trac;
+    in>>trac;
+    trac=UPPER(trac);
+    if(trac=="1" || trac=="MANUALA") cutie_manuala=1;
+    else if(trac=="0" || trac=="AUTOMATA") cutie_manuala=0;
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
 
 void MICA::citire (istream& in)
 {
@@ -58,6 +78,12 @@ void MICA::afisare (ostream& out)
         }
 }
 
+
+ifstream& operator>> (ifstream&in, MICA& mi)
+{
+    mi.citire(in);
+    return in;
+}
 
 istream& operator>> (istream&in, MICA& mi)
 {

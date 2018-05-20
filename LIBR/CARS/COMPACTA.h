@@ -10,8 +10,10 @@ public:
     ~COMPACTA(){senzori_parcare=0;}
     virtual string tip () {return "COMPACTA";}
     COMPACTA& operator= (COMPACTA& cp);
+    virtual void citire(ifstream& in);
     virtual void citire(istream& in);
     virtual void afisare(ostream& out);
+    friend ifstream& operator>> (ifstream& in, COMPACTA& cp);
     friend istream& operator>> (istream& in, COMPACTA& cp);
     friend ostream& operator<< (ostream& out, COMPACTA& cp);
 };
@@ -25,8 +27,10 @@ public:
     ~HATCHBACK(){susp_portb=0;}
     string tip () {return "HATCHBACK COMPACT";}
     HATCHBACK& operator= (HATCHBACK& hb);
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
+    friend ifstream& operator>> (ifstream& in, HATCHBACK& hb);
     friend istream& operator>> (istream& in, HATCHBACK& hb);
     friend ostream& operator<< (ostream& out, HATCHBACK& hb);
 };
@@ -42,8 +46,10 @@ public:
     {scaune_rabatabile=0;}
     string tip () {return "COMBI COMPACT";}
     COMBI& operator= (COMBI& cb);
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
+    friend ifstream& operator>> (ifstream& in, COMBI& cb);
     friend istream& operator>> (istream& in, COMBI& cb);
     friend ostream& operator<< (ostream& out, COMBI& cb);
 };
@@ -58,8 +64,10 @@ public:
     {motor_fata=0;}
     string tip () {return "SEDAN COMPACT";}
     SEDAN& operator= (SEDAN& sd);
+    void citire(ifstream& in);
     void citire(istream& in);
     void afisare(ostream& out);
+    friend ifstream& operator>> (ifstream& in, SEDAN& sd);
     friend istream& operator>> (istream& in, SEDAN& sd);
     friend ostream& operator<< (ostream& out, SEDAN& sd);
 };
@@ -91,7 +99,7 @@ SEDAN& SEDAN::operator= (SEDAN& sd)
     return *this;
 }
 
-
+///ISTREAM
 void COMPACTA::citire (istream& in)
 {
     cout<<"\nSe citesc date pentru Masina COMPACTA:\nNumele: ";
@@ -187,6 +195,105 @@ void SEDAN::citire (istream& in)
     getline(in,n);
 }
 
+///IFSTREAM
+
+
+void COMPACTA::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina COMPACTA:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Senzori de parcare: 1.DA | 2.NU\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") senzori_parcare=1;
+    else if(sir=="2" || sir=="NU") senzori_parcare=0;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+void HATCHBACK::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina HATCHBACK COMPACT:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Senzori de parcare: 1.DA | 2.NU\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") senzori_parcare=1;
+    else if(sir=="2" || sir=="NU") senzori_parcare=0;
+
+    cout<<"Suspensii automate portbagaj: 1.DA | 2.NU\n";
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") susp_portb=1;
+    else if(sir=="2" || sir=="NU") susp_portb=0;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+void COMBI::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina COMBI COMPACT:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Senzori de parcare: 1.DA | 2.NU\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") senzori_parcare=1;
+    else if(sir=="2" || sir=="NU") senzori_parcare=0;
+
+    cout<<"Scaune rabatabile spate: 1.DA | 2.NU\n";
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") scaune_rabatabile=1;
+    else if(sir=="2" || sir=="NU") scaune_rabatabile=0;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+string n;
+getline(in,n);
+}
+void SEDAN::citire (ifstream& in)
+{
+    cout<<"\nSe citesc date pentru Masina SEDAN COMPACT:\nNumele: ";
+    getline(in,Marca);
+    cout<<"Anul fabricatiei | Capacitate rezervol | Lungimea masinii\n";
+    in>>an_fabr>>litraj>>lungime;
+
+    cout<<"Senzori de parcare: 1.DA | 2.NU\n";
+    string sir;
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="DA") senzori_parcare=1;
+    else if(sir=="2" || sir=="NU") senzori_parcare=0;
+
+    cout<<"Plasare motor: 1.FATA | 2.SPATE\n";
+    in>>sir;
+    sir=UPPER(sir);
+    if(sir=="1" || sir=="FATA") motor_fata=1;
+    else if(sir=="2" || sir=="SPATE") motor_fata=0;
+
+    cout<<"PRETUL: ";
+    in>>pret;
+    string n;
+    getline(in,n);
+}
+
+
 void COMPACTA::afisare (ostream& out)
 {
     if(Marca!= " ")
@@ -240,7 +347,11 @@ else out<<" | Fara senzori de parcare";
 }
 
 
-
+ifstream& operator>> (ifstream&in, COMPACTA& cp)
+{
+    cp.citire(in);
+    return in;
+}
 istream& operator>> (istream&in, COMPACTA& cp)
 {
     cp.citire(in);
@@ -252,6 +363,11 @@ ostream& operator<< (ostream&out, COMPACTA& cp)
     return out;
 }
 
+ifstream& operator>> (ifstream& in, HATCHBACK& hb)
+{
+    hb.citire(in);
+    return in;
+}
 istream& operator>> (istream& in, HATCHBACK& hb)
 {
     hb.citire(in);
@@ -263,6 +379,11 @@ ostream& operator<< (ostream& out, HATCHBACK& hb)
     return out;
 }
 
+ifstream& operator>> (ifstream& in, COMBI& cb)
+{
+    cb.citire(in);
+    return in;
+}
 istream& operator>> (istream& in, COMBI& cb)
 {
     cb.citire(in);
@@ -274,6 +395,11 @@ ostream& operator<< (ostream& out, COMBI& cb)
     return out;
 }
 
+ifstream& operator>> (ifstream& in, SEDAN& sd)
+{
+    sd.citire(in);
+    return in;
+}
 istream& operator>> (istream& in, SEDAN& sd)
 {
     sd.citire(in);
