@@ -5,14 +5,12 @@ class AUTOMOBIL
 protected:
     float lungime;
     float pret;
-    float consum_benzina;
-    int viteza_maxima;
-    int cai_putere;
+    float litraj;
     int an_fabr;
     string Marca;
 public:
-    AUTOMOBIL(string M=" ",int an_f=0,int vit_max=0,int cai_put=0,float cons_suta=0.0,float lung=0.0,float price=-1.0):Marca(M),an_fabr(an_f),viteza_maxima(vit_max),cai_putere(cai_put),consum_benzina(cons_suta),lungime(lung),pret(price){}
-    AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.viteza_maxima,A.cai_putere,A.consum_benzina,A.lungime,A.pret){}
+    AUTOMOBIL(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,float price=-1.0):Marca(M),an_fabr(an_f),litraj(litr),lungime(lung),pret(price){}
+    AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.litraj,A.lungime,A.pret){}
     ~AUTOMOBIL();
     virtual void afiss (ostream& out);
     ///string cc(string& desc);
@@ -24,8 +22,8 @@ void AUTOMOBIL::afiss (ostream& out)
 {
     if(Marca!= " ")
         {
-        out<<"Marca : "<<Marca<<" | Anul: "<<an_fabr<<" | Lungime: "<<lungime<<"m | Cai putere : "<<cai_putere<<" CP";;
-        out<<"\n\r | Consum benzina : "<<consum_benzina<<" L/100km | Viteza maxima : "<<viteza_maxima<<" km/h | PRET: "<<pret<<" EURO\n\n";
+        out<<"Marca : "<<Marca<<" | Anul: "<<an_fabr<<" | Lungime: "<<lungime<<"m | Litraj:  "<<litraj<<" L";
+        out<<"\n| Litraj: "<<litraj<<" L | PRET: "<<pret<<" EURO\n\n";
         }
 
 }
