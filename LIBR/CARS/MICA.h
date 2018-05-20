@@ -12,6 +12,7 @@ public:
     {
         cutie_manuala=0;
     }
+    string tip () {return "MICA";}
     MICA& operator= (MICA& mc);
     void citire(istream& in);
     void afisare(ostream& out);

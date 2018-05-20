@@ -13,6 +13,9 @@ public:
     AUTOMOBIL(AUTOMOBIL& A):AUTOMOBIL(A.Marca,A.an_fabr,A.litraj,A.lungime,A.pret){}
     ~AUTOMOBIL();
     AUTOMOBIL& operator=(AUTOMOBIL& A);
+    bool operator<(AUTOMOBIL& A) {return (pret<A.pret);}
+    bool operator>(AUTOMOBIL& A) {return (pret>A.pret);}
+    virtual string tip () {return "AUTOMOBIL";}
     virtual void citire (istream& in);
     virtual void afisare (ostream& out);
     ///string cc(string& desc);

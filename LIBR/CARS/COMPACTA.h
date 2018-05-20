@@ -8,6 +8,7 @@ public:
     COMPACTA(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,int senz_par=1,float price=-1.0):AUTOMOBIL(M,an_f,litr,lung,price),senzori_parcare(senz_par){}
     COMPACTA(COMPACTA& CP):AUTOMOBIL(CP),senzori_parcare(CP.senzori_parcare){}
     ~COMPACTA(){senzori_parcare=0;}
+    virtual string tip () {return "COMPACTA";}
     COMPACTA& operator= (COMPACTA& cp);
     virtual void citire(istream& in);
     virtual void afisare(ostream& out);
@@ -22,6 +23,7 @@ class HATCHBACK: public COMPACTA
 public:
     HATCHBACK(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,int senz_par=0,int susp=0,float price=-1.0):COMPACTA(M,an_f,litr,lung,senz_par,price),susp_portb(susp){}
     ~HATCHBACK(){susp_portb=0;}
+    string tip () {return "HATCHBACK COMPACT";}
     HATCHBACK& operator= (HATCHBACK& hb);
     void citire(istream& in);
     void afisare(ostream& out);
@@ -38,6 +40,7 @@ public:
     COMBI(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,int senz_par=1,int sca_rab=0,float price=-1.0):COMPACTA(M,an_f,litr,lung,senz_par,price),scaune_rabatabile(sca_rab){}
     ~COMBI()
     {scaune_rabatabile=0;}
+    string tip () {return "COMBI COMPACT";}
     COMBI& operator= (COMBI& cb);
     void citire(istream& in);
     void afisare(ostream& out);
@@ -53,6 +56,7 @@ public:
     SEDAN(string M=" ",int an_f=0,float litr=0.0,float lung=0.0,int senz_par=1,int motor_f=0,float price=-1.0):COMPACTA(M,an_f,litr,lung,senz_par,price),motor_fata(motor_f){}
     ~SEDAN()
     {motor_fata=0;}
+    string tip () {return "SEDAN COMPACT";}
     SEDAN& operator= (SEDAN& sd);
     void citire(istream& in);
     void afisare(ostream& out);

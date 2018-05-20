@@ -10,6 +10,7 @@ public:
     MINI(MINI& M):AUTOMOBIL(M),tractiune_fata(M.tractiune_fata){}
     ~MINI(){}
     MINI& operator= (MINI& mi);
+    string tip () {return "MINI";}
     void citire(istream& in);
     void afisare(ostream& out);
     ///FRIEND

@@ -9,6 +9,7 @@ public:
     {}
     MONOVOLUME(MONOVOLUME& mo):AUTOMOBIL(mo),deschidere_usi(mo.deschidere_usi){}
     ~MONOVOLUME(){}
+    virtual string tip () {return "MONOVOLUM";}
     MONOVOLUME& operator= (MONOVOLUME& mv);
     virtual void citire(istream& in){}
     virtual void afisare(ostream& out){}
@@ -25,6 +26,7 @@ public:
     {}
     MONOV_NOU(MONOV_NOU& mvn):MONOVOLUME(mvn),discount_inteprinderi(mvn.discount_inteprinderi){}
     ~MONOV_NOU(){}
+    string tip () {return "MONOVOLUM NOU";}
     MONOV_NOU& operator= (MONOV_NOU& mvn);
     ///FRIEND
     void citire(istream& in);
@@ -43,6 +45,7 @@ public:
     }
     MONOV_SH(MONOV_SH& mvsh):MONOVOLUME(mvsh),discout_vechime(mvsh.discout_vechime){}
     ~MONOV_SH(){}
+    string tip () {return "MONOVOLUM SECOND-HAND";}
     MONOV_SH& operator= (MONOV_SH& mvsh);
     void citire(istream& in);
     void afisare(ostream& out);
